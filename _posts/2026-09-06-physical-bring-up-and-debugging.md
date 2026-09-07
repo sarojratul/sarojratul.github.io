@@ -26,7 +26,9 @@ The tip oxidised heavily and became completely unusable. By the time I understoo
 
 That is when panic set in, and then research mode.
 
-*Photo wanted: the oxidised tip, and the nine ruined MOSFETs and adapters.*
+![The retinned soldering tip beside a brass wool ball and spare amber LEDs](/images/retinned_tip.jpg)
+
+*I have no photo of the tip at its worst, which I regret, because the difference would tell the story on its own. This is after. Hours of flux and fresh solder brought that tip back to something that wets properly, and the brass wool sitting next to it is the thing I should have had from the start. Loose amber LEDs in frame because those were the practice targets.*
 
 **What I learned, in the order it mattered:**
 
@@ -43,9 +45,11 @@ I needed four.
 
 ![An AO3400A soldered onto a SOT-23 to DIP adapter](/images/mosfet_adapter_soldered.jpg)
 
-*One survivor. An AO3400A in SOT-23 reflowed onto a SparkFun SOT-23-to-DIP adapter, before the header pins went in. For scale, that is a fingertip behind it. This is the joint that cost me nine parts and a soldering tip to learn how to make.*
+*The very first one I soldered, and I was proud of it. Look at the source pad: the joint is not properly wetted. Testing later showed I had cooked the MOSFET with too much heat and too long on the pad. Task failed successfully.*
 
-*Photo wanted: all four finished adapters side by side with their header pins in.*
+*This is casualty number one of nine. The lesson underneath it is that "it looks soldered" and "it is soldered" are different claims, and only the diode test settles which one you have.*
+
+*Photo wanted: all four surviving adapters side by side with their header pins in.*
 
 ### How I verified them: the multimeter test that beats the silkscreen
 
@@ -68,6 +72,10 @@ This is straight out of EE 221's "read the datasheet, then verify the part in fr
 ![LED rows seated in the breadboard, seen from a low angle](/images/led_rows_angled.jpg)
 
 *Every string is two LEDs in series, and every pair has to straddle two different columns. At this stage nothing is wired yet, so a single LED in backwards here is invisible until the whole panel refuses to light.*
+
+![Resistors and the four MOSFET adapters going in, partway through the build](/images/breadboard_full.jpg)
+
+*Partway through, with the 33 ohm resistors and the four AO3400A adapters placed. The rails are not powered in this shot. Nothing here has been tested yet.*
 
 **What went on the board:**
 
@@ -149,9 +157,7 @@ Rail connected. 3.3 V driven onto a gate. Every gate network measuring correctly
 
 One thing I checked immediately and ruled out: the battery pack measures **5.35 V** open-circuit. That is a normal fully-charged NiMH pack, about 1.34 V per cell, not a fault. It sags toward 4.8 V under load. I noted it so that I would not treat a healthy battery as a suspect later.
 
-![The complete four-segment build, powered, with nothing lit](/images/breadboard_full.jpg)
-
-*The wall. 16 strings, 16 resistors, four AO3400A adapters, gate networks in place, rail connected. Every measurement says this should work. Nothing lights.*
+*Photo wanted: the finished panel, powered, with nothing lit. The shot below is from partway through the build, not from the failure.*
 
 ### The troubleshooting ladder
 

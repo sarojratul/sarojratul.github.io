@@ -11,7 +11,9 @@ categories: bike-turn-signals
 
 **Why LTspice at all:** we used it in university labs. Combined with EE 221, which is literally analog electronics, and where I learned MOSFET physics, how to actually measure resistance with a multimeter without fighting it, and the habit of spending hours on one bug instead of swapping parts randomly, this is the part of the project that felt like home.
 
-*Screenshot wanted: the A2 LTspice schematic, and the DC sweep and transient plots.*
+![LTspice A2 schematic and operating point for one 2-LED string](/images/ltspice_op_string.jpg)
+
+*Part 1 as it actually ran. Two AMBER diodes in series with a 33 ohm resistor on a 4.8 V source, and the operating point window reporting I(D1) = I(D2) = I(R1) = 0.0247755 A. That is the 24.78 mA the whole design is built on.*
 
 **Part 1, model the LED.** The Lumex part has no SPICE model, so I built one from the datasheet's V<sub>f</sub> curve:
 
@@ -32,6 +34,14 @@ Nominal string current at 4.8 V through 33 Ω: **24.78 mA.**
 | 4.80 V | 24.78 mA |
 | 5.00 V | 29.45 mA |
 
+![DC sweep of the supply from 4.0 V to 5.0 V](/images/ltspice_dc_sweep.jpg)
+
+*The sweep itself, `.dc V1 4.0 5.0 0.05`, plotting the voltage across the 33 ohm resistor. Divide by 33 to get string current.*
+
+![Exported sweep data, V1 against I(R1)](/images/ltspice_sweep_data.jpg)
+
+*The same run exported as text. This is where the table above comes from, and it is why the numbers are exact rather than read off a plot by eye. 4.80 V gives 2.477554e-02 A.*
+
 Monotonic, no surprises, and nothing exceeds the LED's rating even fresh off the charger. The steepness is worth noting: LED current is exponential in supply voltage, so the arrow will visibly dim as the pack drains. That is acceptable. It is not acceptable for the logic, which is the argument for the buck-boost all over again.
 
 **Part 3, a full segment with the real MOSFET.** Three strings, an AO3400A low-side switch, 3.3 V on the gate. The AO3400A ships as a `.SUBCKT`, which took some fighting (see the gotchas below).
@@ -42,6 +52,14 @@ Monotonic, no surprises, and nothing exceeds the LED's rating even fresh off the
 - **V<sub>DS</sub> = 2.38 mV**, so the MOSFET is essentially a wire
 - MOSFET dissipation: **≈ 176 µW**
 - Gate sweep: current is flat at ~74 mA from about **1.4 V** all the way to 3.3 V
+
+![Three-string segment with the AO3400A and its gate network, operating point](/images/ltspice_segment_op.jpg)
+
+*Segment B/C in full: three strings, three 33 ohm resistors, the AO3400A as a low-side switch, and the 220 ohm gate resistor with the 10 kilohm pulldown. Three numbers in that operating point window matter. I(V1) = 0.0741613 A is the segment current. V(n002) = 0.00238018 V is V<sub>DS</sub>, the 2.38 mV. And I(R4) = I(R5) = 0.000322896 A is the gate current, which is the 322.9 microamps I would go on to measure on the real breadboard nine days later.*
+
+![Gate voltage swept from 0 to 3.3 V against drain current](/images/ltspice_gate_sweep.jpg)
+
+*The gate sweep. Current is flat from about 1.4 V all the way to 3.3 V, so the ESP32-C3's 3.3 V output lands a long way inside the fully-on region.*
 
 That gate sweep is the whole argument for choosing a logic-level MOSFET. It is fully on well below the 3.3 V the ESP32-C3 can supply, so there is no marginal-turn-on region to worry about.
 
@@ -80,7 +98,9 @@ What *was* painful was the documents. The old design was scattered across both f
 
 **Objective:** prove the state machine, not the electronics. Wokwi does not model current, so this was four LEDs, one per segment, and pure logic.
 
-*Screenshot or GIF wanted: the Wokwi sweep running, both directions.*
+![Wokwi simulation with the ESP32-C3, four LEDs and two buttons](/images/wokwi_sim.jpg)
+
+*The A3 rig. One LED per segment, two buttons, and the serial log doing the work: fresh hold direction=LEFT, then released with trailing cycles=4, counting down 3, 2, 1, then OFF, then a fresh hold in the other direction. That log is the state machine proving itself, which is the whole point, since Wokwi cannot tell me anything about current.*
 
 The state machine:
 
