@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 540" width="1040" height="540" font-family="Helvetica, Arial, sans-serif">
+<rect width="1040" height="540" fill="#ffffff"/>
+<text x="520" y="36" text-anchor="middle" font-size="21" font-weight="bold" fill="#111">System architecture</text>
+
+<rect x="40" y="70" width="330" height="392" rx="10" fill="#fbfbfd" stroke="#b9c2d0" stroke-width="2"/>
+<text x="205" y="98" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">HANDLEBAR TRANSMITTER</text>
+
+<rect x="70" y="118" width="270" height="52" rx="6" fill="#eef2f8" stroke="#7d90ab" stroke-width="1.5"/>
+<text x="205" y="140" text-anchor="middle" font-size="13.5" fill="#222">2 &#215; tactile switch</text>
+<text x="205" y="158" text-anchor="middle" font-size="12" fill="#666">left / right, to ground</text>
+
+<rect x="70" y="196" width="270" height="58" rx="6" fill="#e7edf6" stroke="#5a7095" stroke-width="1.5"/>
+<text x="205" y="220" text-anchor="middle" font-size="14" font-weight="bold" fill="#1f3557">ESP32-C3</text>
+<text x="205" y="240" text-anchor="middle" font-size="12" fill="#666">stateless, heartbeat only</text>
+
+<rect x="70" y="280" width="270" height="70" rx="6" fill="#f4f2ea" stroke="#a89a72" stroke-width="1.5"/>
+<text x="205" y="303" text-anchor="middle" font-size="13.5" fill="#222">3 &#215; AAA NiMH, 1100 mAh</text>
+<text x="205" y="322" text-anchor="middle" font-size="12" fill="#666">3.6 V nominal, sags below 3.3 V</text>
+<text x="205" y="341" text-anchor="middle" font-size="12.5" fill="#222">TPS63070 buck-boost &#8594; 3.3 V</text>
+
+<text x="205" y="386" text-anchor="middle" font-size="12" fill="#555">Sends raw held / not-held levels.</text>
+<text x="205" y="404" text-anchor="middle" font-size="12" fill="#555">Holds no state of its own.</text>
+<text x="205" y="428" text-anchor="middle" font-size="11.5" fill="#888">A boost is required here: 3.0 V in, 3.3 V out.</text>
+
+<line x1="205" y1="170" x2="205" y2="194" stroke="#666" stroke-width="2"/>
+<path d="M 205 196 l -5 -8 l 10 0 z" fill="#666"/>
+<line x1="205" y1="278" x2="205" y2="256" stroke="#666" stroke-width="2"/>
+<path d="M 205 254 l -5 8 l 10 0 z" fill="#666"/>
+
+<path d="M 375 225 L 660 225" stroke="#c2410c" stroke-width="3"/>
+<path d="M 660 225 l -14 -8 l 0 16 z" fill="#c2410c"/>
+<text x="517" y="205" text-anchor="middle" font-size="14" font-weight="bold" fill="#c2410c">ESP-NOW</text>
+<text x="517" y="248" text-anchor="middle" font-size="12" fill="#7c4a2d">2.4 GHz, peer to peer</text>
+<text x="517" y="265" text-anchor="middle" font-size="12" fill="#7c4a2d">no router, no pairing</text>
+<text x="517" y="290" text-anchor="middle" font-size="11.5" fill="#999">linkAlive() lets the receiver fail safe</text>
+<text x="517" y="306" text-anchor="middle" font-size="11.5" fill="#999">if the link drops</text>
+
+<rect x="665" y="70" width="335" height="392" rx="10" fill="#fbfbfd" stroke="#b9c2d0" stroke-width="2"/>
+<text x="832" y="98" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">BACKPACK RECEIVER</text>
+
+<rect x="695" y="118" width="275" height="58" rx="6" fill="#e7edf6" stroke="#5a7095" stroke-width="1.5"/>
+<text x="832" y="142" text-anchor="middle" font-size="14" font-weight="bold" fill="#1f3557">ESP32-C3</text>
+<text x="832" y="162" text-anchor="middle" font-size="12" fill="#666">GPIO 2 / 4 / 5 / 6 &#183; holds all state and behaviour</text>
+
+<rect x="695" y="204" width="275" height="64" rx="6" fill="#f0f6ff" stroke="#6a90bd" stroke-width="1.5"/>
+<text x="832" y="226" text-anchor="middle" font-size="13" fill="#222">4 &#215; gate network</text>
+<text x="832" y="245" text-anchor="middle" font-size="12" fill="#666">220 &#8486; series, 10 k&#8486; pulldown</text>
+<text x="832" y="261" text-anchor="middle" font-size="11.5" fill="#888">322.9 &#181;A per gate</text>
+
+<rect x="695" y="292" width="275" height="52" rx="6" fill="#efeef7" stroke="#8079a8" stroke-width="1.5"/>
+<text x="832" y="314" text-anchor="middle" font-size="13" fill="#222">4 &#215; AO3400A, low side</text>
+<text x="832" y="332" text-anchor="middle" font-size="11.5" fill="#888">V-DS = 2.38 mV when the gate is high</text>
+
+<rect x="695" y="366" width="275" height="46" rx="6" fill="#fff4e0" stroke="#e8a33d" stroke-width="1.5"/>
+<text x="832" y="386" text-anchor="middle" font-size="13" fill="#222">Segments A / B / C / D</text>
+<text x="832" y="403" text-anchor="middle" font-size="11.5" fill="#7a5a1a">32 LEDs, 16 strings of 2 + 33 &#8486;</text>
+
+<line x1="832" y1="176" x2="832" y2="202" stroke="#666" stroke-width="2"/>
+<path d="M 832 204 l -5 -8 l 10 0 z" fill="#666"/>
+<line x1="832" y1="268" x2="832" y2="290" stroke="#666" stroke-width="2"/>
+<path d="M 832 292 l -5 -8 l 10 0 z" fill="#666"/>
+<line x1="832" y1="344" x2="832" y2="364" stroke="#666" stroke-width="2"/>
+<path d="M 832 366 l -5 -8 l 10 0 z" fill="#666"/>
+
+<rect x="695" y="428" width="275" height="0" fill="none"/>
+
+
+
+<rect x="300" y="482" width="440" height="44" rx="8" fill="#f4f2ea" stroke="#a89a72" stroke-width="1.5"/>
+<text x="520" y="500" text-anchor="middle" font-size="13" fill="#222">4 &#215; AA NiMH, 2800 mAh, 4.8 V nominal</text>
+<text x="520" y="517" text-anchor="middle" font-size="11.5" fill="#666">raw 4.8 V to the LED panel &#183; TPS63070 &#8594; 3.3 V for logic only</text>
+<line x1="740" y1="504" x2="1012" y2="504" stroke="#a89a72" stroke-width="2"/>
+<line x1="1012" y1="504" x2="1012" y2="392" stroke="#a89a72" stroke-width="2"/><line x1="1012" y1="392" x2="972" y2="392" stroke="#a89a72" stroke-width="2"/>
+<path d="M 970 392 l 8 -5 l 0 10 z" fill="#a89a72"/>
+</svg>
