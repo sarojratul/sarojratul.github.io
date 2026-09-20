@@ -2,8 +2,9 @@
 layout: post
 title: "Simulation and Virtual Prototyping"
 date: 2026-08-29
-categories: bike-turn-signals
 ---
+
+# Part 2: Simulation and Virtual Prototyping
 
 ## 29 August 2026: LTspice, the analog half (Stage A2)
 

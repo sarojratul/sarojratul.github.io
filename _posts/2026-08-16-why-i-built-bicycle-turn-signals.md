@@ -2,8 +2,9 @@
 layout: post
 title: "Why I Built Wireless Bicycle Turn Signals"
 date: 2026-08-16
-categories: bike-turn-signals
 ---
+
+# Part 0: Why I started this
 
 ## Mid August 2026: The money problem, solved
 

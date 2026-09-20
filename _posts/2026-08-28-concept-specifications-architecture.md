@@ -2,8 +2,9 @@
 layout: post
 title: "Concept, Specifications and Architecture"
 date: 2026-08-28
-categories: bike-turn-signals
 ---
+
+# Part 1: Concept, Specifications, and Architecture
 
 ## Late August 2026: Two arrows became one
 
