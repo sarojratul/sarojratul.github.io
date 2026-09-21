@@ -1,0 +1,45 @@
+{%- comment -%}
+  Build-log navigation for posts that set `series` and `part` in front matter.
+  Lists every entry in the series in part order, and links to the previous and next entry.
+{%- endcomment -%}
+{%- assign series_posts = site.posts | where: "series", page.series | sort: "part" -%}
+{%- assign series_info = site.data.series[page.series] -%}
+{%- assign prev_post = nil -%}
+{%- assign next_post = nil -%}
+{%- for p in series_posts -%}
+  {%- if p.url == page.url -%}
+    {%- assign i_prev = forloop.index0 | minus: 1 -%}
+    {%- assign i_next = forloop.index0 | plus: 1 -%}
+    {%- if forloop.first == false -%}{%- assign prev_post = series_posts[i_prev] -%}{%- endif -%}
+    {%- if forloop.last == false -%}{%- assign next_post = series_posts[i_next] -%}{%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+<nav class="series-nav series-nav--{{ include.position }}" aria-label="Build log navigation">
+  {%- if include.position == "top" %}
+  <details class="series-nav__list">
+    <summary>
+      <span class="series-nav__series"><a href="{{ series_info.url | relative_url }}">{{ series_info.title }}</a></span>
+      <span class="series-nav__meta">Build log, part {{ page.part }} of {{ series_posts.size | minus: 1 }}{% if page.covers %} · {{ page.covers }}{% endif %} · all parts</span>
+    </summary>
+    <ol start="0">
+      {%- for p in series_posts %}
+      <li{% if p.url == page.url %} class="is-current" aria-current="page"{% endif %}>
+        {%- if p.url == page.url -%}{{ p.title | escape }}{%- else -%}<a href="{{ p.url | relative_url }}">{{ p.title | escape }}</a>{%- endif -%}
+      </li>
+      {%- endfor %}
+    </ol>
+  </details>
+  {%- endif %}
+  <div class="series-nav__pager">
+    {%- if prev_post %}
+    <a class="series-nav__prev" href="{{ prev_post.url | relative_url }}"><span>Previous</span>{{ prev_post.title | escape }}</a>
+    {%- else %}
+    <a class="series-nav__prev" href="{{ series_info.url | relative_url }}"><span>Back to</span>Project overview</a>
+    {%- endif %}
+    {%- if next_post %}
+    <a class="series-nav__next" href="{{ next_post.url | relative_url }}"><span>Next</span>{{ next_post.title | escape }}</a>
+    {%- else %}
+    <a class="series-nav__next" href="{{ series_info.url | relative_url }}"><span>Latest entry. Back to</span>Project overview</a>
+    {%- endif %}
+  </div>
+</nav>
