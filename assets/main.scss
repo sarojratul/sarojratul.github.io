@@ -1,0 +1,138 @@
+---
+# Front matter tells Jekyll to process this file.
+---
+
+@import "minima";
+
+// Build-log additions on top of minima.
+
+.entry-date {
+  margin-top: -$spacing-unit * 0.35;
+  font-size: $small-font-size;
+  color: $grey-color;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.post-content h2 {
+  margin-top: $spacing-unit * 1.2;
+}
+
+.post-content hr {
+  border: 0;
+  border-top: 1px solid $grey-color-light;
+  margin: $spacing-unit * 1.5 0;
+}
+
+// Long tables (BOM, test results) scroll sideways on phones instead of breaking the page.
+.post-content table {
+  display: block;
+  overflow-x: auto;
+  font-size: 0.92em;
+}
+
+.post-content img {
+  display: block;
+  width: auto;
+  max-height: 70vh;
+  margin: 0 auto $spacing-unit * 0.4;
+  border-radius: 4px;
+}
+
+// Image captions: italic paragraphs tagged {: .caption} in the markdown.
+.post-content p.caption {
+  font-size: $small-font-size;
+  color: $grey-color-dark;
+}
+
+details.toc {
+  border: 1px solid $grey-color-light;
+  border-radius: 4px;
+  padding: $spacing-unit * 0.4 $spacing-unit * 0.6;
+  margin-bottom: $spacing-unit;
+  background: lighten($grey-color-light, 6%);
+
+  summary { cursor: pointer; font-weight: 600; }
+  ul { margin-top: $spacing-unit * 0.4; margin-bottom: 0; }
+}
+
+.series-nav {
+  font-size: $small-font-size;
+  margin: 0 0 $spacing-unit;
+
+  &--bottom { margin: $spacing-unit * 1.5 0 0; }
+
+  &__list {
+    border-left: 4px solid $brand-color;
+    background: lighten($grey-color-light, 6%);
+    padding: $spacing-unit * 0.4 $spacing-unit * 0.6;
+    margin-bottom: $spacing-unit * 0.5;
+
+    summary { cursor: pointer; list-style-position: outside; }
+    ol { margin: $spacing-unit * 0.4 0 0 $spacing-unit; }
+    li.is-current { font-weight: 600; }
+  }
+
+  &__series { font-weight: 600; margin-right: 0.4em; }
+  &__meta { color: $grey-color; }
+
+  &__pager {
+    display: flex;
+    justify-content: space-between;
+    gap: $spacing-unit * 0.5;
+
+    a {
+      flex: 1 1 50%;
+      border: 1px solid $grey-color-light;
+      border-radius: 4px;
+      padding: $spacing-unit * 0.3 $spacing-unit * 0.5;
+
+      span {
+        display: block;
+        color: $grey-color;
+        font-size: 0.85em;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      &:hover { text-decoration: none; border-color: $brand-color; }
+    }
+  }
+
+  &__next { text-align: right; }
+}
+
+// Project overview page.
+.parts-list {
+  list-style: none;
+  margin-left: 0;
+
+  li {
+    border-top: 1px solid $grey-color-light;
+    padding: $spacing-unit * 0.5 0;
+  }
+
+  .parts-list__title { font-size: 1.1em; font-weight: 600; }
+  .parts-list__meta { font-size: $small-font-size; color: $grey-color; }
+  p { margin: $spacing-unit * 0.2 0 0; }
+}
+
+.project-card {
+  border: 1px solid $grey-color-light;
+  border-radius: 4px;
+  padding: $spacing-unit * 0.75;
+  margin-bottom: $spacing-unit;
+
+  h2 { margin-top: 0; }
+  img { margin-bottom: $spacing-unit * 0.5; border-radius: 4px; }
+}
+
+.button-row a {
+  display: inline-block;
+  margin: 0 0.5em 0.5em 0;
+  padding: 0.3em 0.8em;
+  border: 1px solid $brand-color;
+  border-radius: 4px;
+
+  &:hover { text-decoration: none; background: $brand-color; color: #fff; }
+}
