@@ -170,7 +170,7 @@ Rather than listing possible causes and guessing, I wrote an ordered set of meas
 | 2 | Rail to each segment's string-anode bus | same ~5.3–5.4 V | A broken jumper from the rail to that bus |
 | 3 | MOSFET **gate pin** to ground, with 3.3 V driven | ~3.3 V | Open 220 Ω path, or the source is not actually enabled |
 | 4 | **V<sub>DS</sub>** (drain to source) with the gate high | a few mV (LTspice: **2.38 mV**) | MOSFET not turning on: gate wire on the wrong pin, or source-to-ground missing |
-| 5 | Current in one string: meter in series between the resistor bus and the string | <sub>25 mA | 0 mA with a correct low V</sub>DS~ means an LED backwards, or an open string |
+| 5 | Current in one string: meter in series between the resistor bus and the string | ~25 mA | 0 mA with a correct low V<sub>DS</sub> means an LED backwards, or an open string |
 
 Note that step 1 measures at the **breadboard rail holes**, not the battery terminals. That distinction is the whole point of the ladder: measuring at the source tells you the source is fine, which is not the question.
 
@@ -382,5 +382,138 @@ It is a genuinely odd result on its own terms. LED forward voltage normally drop
 I suspected the wiring first, mostly because of the two weeks off the bench. Once the numbers came back low but self-consistent rather than erratic, it stopped feeling like a fault to chase, and the brightness looked no different from what I remembered from the last session, which in hindsight is its own small lesson: a 30 percent current difference does not necessarily look like anything to the eye. The meter is the instrument that catches it, not the LED.
 
 **Next:** wire and test segments B and C the same way, on the new supply, expecting the same lower-than-design currents rather than treating it as a surprise a second time. Then the four-segment hand test, and the all-four-lit measurement, against whatever the real total turns out to be rather than the original 396.5 mA figure.
+
+## 20 September 2026: Segments B and C, and the panel together for the first time
+
+**Objective.** Repeat the bring-up done on segment D earlier today on segments B and C, the two body segments, then run the rest of B5's pass criteria: each of the four segments lighting alone with the others dark, then all four together while watching the rail.
+
+**Method.** Same bench supply, same grounding (black lead to the shared GND rail, AD2 ground tied to the same rail), same voltage-across-the-33 Ohm-resistor method used on segment D. Then, one segment at a time, touched the AD2's 3.3 V line to each of the four 220 Ohm gate resistors in turn, the hand test from B5 step 8: each segment should light by itself with the rest of the board dark. Then all four gates driven high together, reading the total off the bench supply's own display.
+
+**Result.**
+
+| Segment | Rail | Current | Power |
+|---|---|---|---|
+| B | 4.81 V | 0.053 A | 0.254 W |
+| C | 4.81 V | 0.053 A | resistor and LED voltages matching B exactly |
+| All four together | 4.81 V | 0.265 A | 1.274 W |
+
+![All four segments of the arrow lit at once](/images/all_four_segments_lit.jpg)
+
+*All four segments lit together for the first time, B5's final pass criterion. The rainbow ribbon cable on the right belongs to the ESP32-C3 wiring staged for B7, not yet connected to anything live here.*
+
+![The bench supply reading during the all-four test](/images/bench_supply_all_four_reading.jpg)
+
+*0.265 A total at 4.81 V. Summing each segment's own individually measured current (B and C at 53 mA each, A and D both running close to segment D's already-measured 80 to 89 mA) predicts about 266 mA, close enough to the 265 mA on the display to call it confirmed rather than coincidental.*
+
+![Probing each gate resistor in turn to confirm the segments switch independently](/images/isolation_test_probe.gif)
+
+*Touching the AD2's 3.3 V line to each of the four 220 Ohm gate resistors in turn. Each segment lights on its own with the rest of the board dark, which is the whole point of the test: four independent switches, not one circuit that happens to look right when everything is on together.*
+
+**What it means.** B and C landing at exactly the same current as each other, down to the resistor and LED voltages, says the LED forward-voltage shift found on segment D earlier today is not specific to that one segment. All four segments now read consistently below the original 74.3 mA and 123.9 mA design figures, and every one of them is internally self-consistent doing it. Both the isolation test and the combined-current test came back clean, which closes B5: the four segments are wired correctly, they switch independently of each other, and the total draw is fully explained by the four segments' own individually measured numbers. None of this points at a fault. It points at a different, better-understood baseline than the LTspice model assumed.
+
+---
+
+## 20 September 2026: B6, closed by the equipment already on the bench
+
+B6 exists to prove the panel can run from a power source that will not get damaged and does not need babysitting, before anything more complicated gets wired in. As originally planned that meant a separate test against a USB power bank.
+
+That objective was already satisfied before B6 was ever reached. The bench supply took over the rail-power role days ago specifically because it holds an exact voltage and caps current in a way four AA cells or a power bank cannot, and every segment bring-up done so far, including all of today's, has run on it without an unexpected reset or a brownout. Running a second test against a power bank would prove the same thing a second time. B6 is marked done by the equipment already in use, no separate test recorded.
+
+**Next:** B7, wiring the ESP32-C3 into the gate networks for real.
+
+---
+
+## 20 September 2026: What draining a battery actually looks like
+
+**Objective.** Segment A had already shown a lower-than-designed current on the new bench supply. Before treating that as just a fixed offset, find out how that current actually changes as the rail sags, since the finished panel runs off four NiMH cells discharging toward empty, not a bench supply holding a fixed 4.8 V.
+
+**Method.** Segment A only, rail dialed by hand to four points: 5.0 V, 4.8 V, 4.5 V and 4.0 V, reading the supply's own current display at each.
+
+**Result.**
+
+| Rail voltage | Measured current |
+|---|---|
+| 5.0 V | 102 mA |
+| 4.8 V | 88 mA |
+| 4.5 V | 67 mA |
+| 4.0 V | 31 mA |
+
+Every one of those sits well under what the LTspice sweep from Stage A2 predicts at the same voltage for a five-string segment, consistent with the higher LED V<sub>F</sub> already found on segment D today. The more interesting part is the shape of the drop, not the offset: 5.0 to 4.8 V is a 14% drop in current for a 4% drop in voltage, 4.8 to 4.5 V is a 24% drop in current for a 6% drop in voltage, and 4.5 to 4.0 V is a 54% drop in current for an 11% drop in voltage. The percentage drop in current accelerates much faster than the percentage drop in voltage.
+
+**What it means.** That is diode-knee behaviour: current through an LED does not fall linearly as forward voltage drops, it falls off a cliff once the voltage gets close to the diode's effective turn-on point. In practice, the panel will not dim evenly as the NiMH pack discharges. It will look close to full brightness for most of the pack's charge, then get dramatically dimmer over the last stretch before the pack is empty, rather than fading the whole way down. Worth knowing before trusting a glance at the panel to judge how much charge is left.
+
+"I wanted to emulate the battery pack, because I won't be carrying a constant DC power supply with me while biking after all," was the reason for running the sweep in the first place, and the shape of the result is exactly the kind of thing a fixed bench voltage would never have shown.
+
+---
+
+## 20 September 2026: A GPIO pin the datasheet caught before I did
+
+**Objective.** Before wiring the ESP32-C3 into the panel for the first time, B7 step 1 calls for checking the locked GPIO 2/4/5/6 pin assignment against the board's actual datasheet, rather than trusting a pin set that had been decided weeks earlier.
+
+**Method.** Checked GPIO 2, 4, 5 and 6 against Espressif's own ESP32-C3 hardware design guidelines and the Seeed XIAO ESP32-C3 pinout diagram.
+
+**Result.** GPIO2 is one of the ESP32-C3's three strapping pins, along with GPIO8 and GPIO9, and Espressif's documentation explicitly recommends pulling it up, not down, "due to glitches." The panel's design put a permanent 10 kOhm pulldown on GPIO2 for segment A's gate network, exactly the opposite of that guidance.
+
+**What it means.** A board that might not boot reliably, in a failure mode that would only show up once the panel was actually wired in, since none of the gate testing done up to this point had the ESP32-C3 anywhere near that pin. Moved segment A off GPIO2 onto GPIO3, the adjacent pin, unused and not a strapping pin. GPIO 3, 4, 5, 6 is now the final, locked pin set for segments A, B, C, D, and the firmware and build guide were both updated before any wire touched the board. Same instinct that found the Wokwi LEDs wired backwards and identified the MOSFET pinout empirically instead of trusting the adapter's silkscreen: check a part's own documentation before trusting an assumption, however locked that assumption was supposed to be.
+
+---
+
+## 20 September 2026: Headers, and a ground loop that looked like a dead board
+
+**Objective.** Get header pins onto both ESP32-C3 boards, the panel receiver and the handlebar transmitter built ahead for B8, and get the receiver flashing the real firmware for the first time.
+
+**Method.** Soldered all 14 header pins on each board, using female header sockets already on hand so the boards can sit on perfboard later without resoldering.
+
+**Result.**
+
+![Both ESP32-C3 boards with all 14 header pins soldered](/images/esp32c3_boards_soldered.jpg)
+
+*Both Seeed XIAO ESP32-C3 boards done, one for the panel receiver, one held for the handlebar transmitter.*
+
+"Soldering went much much better than mosfet to adapter soldering. Still some pins weren't very well soldered. But I guess it's good enough for prototyping," which, after nine ruined SOT-23 adapters in August, is a fair standard to hold a 0.1 inch through-hole header to.
+
+Flashing came with its own ladder. Arduino IDE's board search showed nothing but greyed-out entries for "esp32," because the ESP32 board package had never been installed in Boards Manager, fixed by installing "esp32 by Espressif Systems" from there directly. The next problem was different: plugging the board in showed a USB COM port for a few seconds, then it vanished, every time, boards list still greyed out. Different cables, different ports, same result.
+
+"When you told me it could be due to broken wire, overload, etc etc, then i thought it really shouldnt be the case. Then I troubleshooted one by one. Tried various ports and cable combinations, same result. Then i thought, if it is related to some electrical fault and I am sure my ports and cables are fine, then only thing causing fault would be the gnd connected to the esp. I tested it out and it worked."
+
+Disconnecting the ESP32-C3's ground wire from the panel's shared GND rail, plugging in, letting the port enumerate and selecting it, then reconnecting ground afterward, worked cleanly and stayed working.
+
+**What it means.** Not a short and not damaged hardware. A ground loop: the USB-grounded laptop and the separately earthed bench supply were both referenced to their own wall outlets while also tied together through the panel's GND rail, and that loop was enough to disrupt enumeration on plug-in. It is a bench-setup artifact specifically, caused by a mains-grounded instrument and a USB-grounded computer sharing one rail, and it will not exist once the panel runs off its own battery pack with nothing else sharing its ground.
+
+---
+
+## 20 September 2026: B7, and the arrow sweeps in both directions
+
+**Objective.** With GPIO 3, 4, 5, 6 wired to the four gate networks for the first time, confirm the receiver firmware actually drives the panel the way it is supposed to: sweeping the correct direction, current where predicted, a clean boot.
+
+**Method.** Flashed a build with the radio stubbed to a hard-coded direction, per B7 step 3, so the sweep runs continuously without needing the transmitter board or a live ESP-NOW link yet.
+
+**Result.** With the direction set to LEFT: segment C alone, then C with B, then C with B with A, sweeping toward the left arrowhead as designed.
+
+![The panel sweeping through its lit sequence, wired to the ESP32-C3 for the first time](/images/direction_sweep_flash.gif)
+
+*The receiver's own GPIOs driving the gate networks directly, no bench-injected gate signal this time. The second, smaller breadboard below carries the ESP32-C3 boards and their wiring to the panel.*
+
+Reflashed with the direction set to RIGHT: B alone, then B with C, then B with C with D, mirrored correctly toward the right arrowhead. The bench supply's display read a peak of 0.187 A during the three-segment hold, against roughly 186 mA predicted from the individually measured segment currents, close enough that B7's per-string current check was skipped rather than repeated with an inline meter on top of that cross-check. Power-cycled the board with the panel still connected: no stray segment lit at boot.
+
+**What it means.** B7 passes in full: correct topology, correct direction logic both ways, current accounted for, clean boot. The activation state machine (OFF, HELD, TRAILING) and the segment timing it produces got written up as a diagram once this closed out, since the timing itself kept changing for the rest of the day and a diagram that goes stale is worse than no diagram at all.
+
+*Screenshot wanted: the state machine and sweep-timing diagrams.*
+
+---
+
+## 20 September 2026: Tuning the sweep by eye, then checking it with a scope
+
+**Objective.** HOLD_MS, how long the full three-segment arrow stays lit before the cycle repeats, had been an open question since the Wokwi build in early September. With the real hardware finally flashing, settle it by watching the actual panel instead of guessing at a number in advance.
+
+**Method.** Live and iterative: flash a guess, watch it, change the constant, reflash. No target number going in beyond wanting it readable at a glance.
+
+**Result.** Started from the original STEP_MS 120 ms / CYCLE_MS 800 ms with no separate hold phase, which read too fast to follow. Edited to STEP_MS 300 ms / CYCLE_MS 1000 ms, then added a distinct HOLD_MS of 350 ms. Still felt quick, so the whole thing went 2x slower: STEP_MS 600 ms, HOLD_MS 700 ms, CYCLE_MS 2000 ms. That overshot, so it came back to 1.5x instead of 2x, and the blank tail at the end of the cycle was cut entirely so the sweep restarts straight from the first segment instead of going dark for a beat: STEP_MS 450 ms, HOLD_MS 525 ms, CYCLE_MS 1425 ms. Last adjustment, the full-arrow hold specifically needed to last longer: HOLD_MS up another 1.5x to 788 ms, CYCLE_MS following it up to 1688 ms.
+
+"I wanted it to be something noticeable. First config seemed too fast. I might still change the speed later if after a few days the current speed looks unsatisfactory to a fresh pair of eyes."
+
+The work plan's own B7 instructions warn that judging timing by eye is not a measurement you can put in a table, so before calling it settled, the final numbers went on the Analog Discovery 2's scope: two channels on adjacent segment nodes, cursors dropped directly on the edges, reading the time delta straight off the display. STEP_MS measured 446.9 ms against a configured 450 ms. A second cursor pair across one segment's full on-time, from the start of the hold phase to the next cycle's restart, measured 1228 ms, which combined with the STEP_MS reading gives a derived HOLD_MS of about 781 ms against the configured 788 ms. A third pair across one full cycle, rise to rise, measured 1689 ms against a configured 1688 ms.
+
+**What it means.** Every one of those landed within about 1% of what the firmware was actually asked to do. The by-eye tuning and the microcontroller's own millis()-based timing agree with each other, not just with the sound of "close enough."
 
 ---

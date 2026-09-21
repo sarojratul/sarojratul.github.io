@@ -62,4 +62,4 @@ Listed plainly, because this is the part I would want to read.
 
 ---
 
-*Log continues. Next entry: one segment, from scratch.*
+*Log continues. Next entry: B8, the second ESP32-C3 and the ESP-NOW link.*
