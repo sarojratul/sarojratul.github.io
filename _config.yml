@@ -3,6 +3,24 @@ description: Electrical engineering build logs and project write-ups
 author: Saroj Ratul
 email: saroj.ratul@gmail.com
 theme: minima
+timezone: America/Regina
 show_excerpts: true
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-redirect-from
+
+# Pages shown in the top navigation bar, in this order.
+header_pages:
+  - turn-signal.md
+  - about.md
+
 minima:
   date_format: "%-d %B %Y"
+
+kramdown:
+  toc_levels: "2..3"
+
+exclude:
+  - README.md
