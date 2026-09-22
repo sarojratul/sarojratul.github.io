@@ -13,6 +13,7 @@ plugins:
 
 # Pages shown in the top navigation bar, in this order.
 header_pages:
+  - comet-air-mouse.md
   - turn-signal.md
   - about.md
 

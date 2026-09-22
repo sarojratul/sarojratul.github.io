@@ -21,7 +21,9 @@ The build log is written as I go rather than afterwards, so the failures are sti
 
 ## Where it stands
 
-*As of 20 September 2026.*
+*As of 21 September 2026.*
+
+**Paused for the winter.** I am not riding right now and will not be until winter is over, so the project is on hold. That leaves the whole winter to finish it before spring. Meanwhile I am building a [COMET Air Mouse](/comet-air-mouse/). [More in Part 7](/turn-signal/part-7-whats-next/).
 
 | Work | Status |
 |---|---|
@@ -30,7 +32,7 @@ The build log is written as I go rather than afterwards, so the failures are sti
 | Panel on the breadboard, all four segments verified (B5) | Done ([Parts 3 to 5](/turn-signal/part-3-soldering-and-panel-build/)) |
 | Safe bench power source (B6) | Done ([Part 5](/turn-signal/part-5-full-panel/#b6-closed-by-the-equipment-already-on-the-bench)) |
 | ESP32-C3 driving the panel, sweep timing settled (B7) | Done ([Part 6](/turn-signal/part-6-esp32-drives-the-panel/)) |
-| Handlebar transmitter and ESP-NOW link (B8) | **Next** |
+| Handlebar transmitter and ESP-NOW link (B8) | **Next**, on hold until I pick the project back up this winter |
 | Power stage, TPS63070 buck-boost (B10) | Not started |
 | Enclosure and weatherproofing (Stage C) | Planned ([Part 7](/turn-signal/part-7-whats-next/)) |
 | Bare-metal TM4C123 firmware and custom PCB (Phase 2) | Planned ([Part 7](/turn-signal/part-7-whats-next/#phase-2-bare-metal-migration-and-a-custom-pcb)) |

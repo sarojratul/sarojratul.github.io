@@ -6,6 +6,7 @@ Personal site and project build logs, served by GitHub Pages with the minima the
 
 - `index.md`: home page. Intro, a card for the current project, then every post newest first.
 - `turn-signal.md`: project overview at `/turn-signal/`. Status table, the build log index (generated automatically), specs at a glance, how the work plan is organised, and lessons so far.
+- `comet-air-mouse.md`: project overview at `/comet-air-mouse/`. No entries yet; its build log index fills in automatically from posts with `series: comet-air-mouse`.
 - `about.md`: about page.
 - `_posts/`: one markdown file per build-log entry, named `YYYY-MM-DD-part-N-slug.md`.
 - `images/`: all photos, screenshots and diagrams, referenced as `/images/filename`.
