@@ -9,6 +9,8 @@ excerpt: "The decisions already made for the 3D-printed enclosure, and the Phase
 permalink: /turn-signal/part-7-whats-next/
 ---
 
+> **Update, 21 September 2026:** I have paused this project. I am not riding right now and will not be until winter is over, so there is no reason to rush B8 before the snow. I will have the whole winter to finish it, and I plan to pick it back up then so it is ready for spring. In the meantime I am building a [COMET Air Mouse](/comet-air-mouse/). Nothing below has changed; it is still the plan.
+
 Nothing in this entry is built yet. It records the decisions that are already made, because they were made for reasons. The immediate next step on the bench is still Stage B: **B8**, the second ESP32-C3 and the ESP-NOW link, then the power stage.
 
 ## Enclosure and mechanical integration (Stage C)
