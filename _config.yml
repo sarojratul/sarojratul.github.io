@@ -1,27 +1,42 @@
 title: Saroj Ratul
-description: Electrical engineering build logs and project write-ups
+tagline: Electrical engineering student. I build small hardware and write up how it went.
+description: Hardware build logs by Saroj Ratul, Electrical Engineering at the University of Saskatchewan.
 author: Saroj Ratul
 email: saroj.ratul@gmail.com
-theme: minima
+github: sarojratul
+url: https://sarojratul.github.io
 timezone: America/Regina
-show_excerpts: true
+lang: en
+
+# minima stays as the base theme, but every layout it provides is overridden here,
+# and assets/main.scss replaces its stylesheet entirely.
+theme: minima
 
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-redirect-from
 
-# Pages shown in the top navigation bar, in this order.
-header_pages:
-  - comet-air-mouse.md
-  - turn-signal.md
-  - about.md
-
-minima:
-  date_format: "%-d %B %Y"
+# Top navigation, in this order.
+nav:
+  - title: Air Mouse
+    url: /comet-air-mouse/
+  - title: Turn Signal
+    url: /turn-signal/
+  - title: About
+    url: /about/
 
 kramdown:
+  input: GFM
+  hard_wrap: false
   toc_levels: "2..3"
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: series-post
 
 exclude:
   - README.md
