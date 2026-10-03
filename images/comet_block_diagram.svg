@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 550" width="1040" height="550" font-family="Helvetica, Arial, sans-serif">
+<rect width="1040" height="550" fill="#ffffff"/>
+<text x="520" y="36" text-anchor="middle" font-size="21" font-weight="bold" fill="#111">System architecture</text>
+
+<!-- handheld -->
+<rect x="40" y="70" width="340" height="420" rx="10" fill="#fbfbfd" stroke="#b9c2d0" stroke-width="2"/>
+<text x="210" y="98" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">AIR MOUSE (HANDHELD)</text>
+
+<rect x="70" y="116" width="280" height="56" rx="6" fill="#eef2f8" stroke="#7d90ab" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="210" y="139" text-anchor="middle" font-size="13.5" fill="#222">4 &#215; tactile switch, to ground</text>
+<text x="210" y="158" text-anchor="middle" font-size="12" fill="#666">Point D1 &#183; Next D4 &#183; Prev D5 &#183; spare D10</text>
+
+<rect x="70" y="190" width="280" height="56" rx="6" fill="#efeef7" stroke="#8079a8" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="210" y="213" text-anchor="middle" font-size="13.5" fill="#222">MPU-6050 gyro (Adafruit 3886)</text>
+<text x="210" y="232" text-anchor="middle" font-size="12" fill="#666">I&#178;C: SDA D3, SCL D2 &#183; 3.3 V</text>
+
+<rect x="70" y="270" width="280" height="62" rx="6" fill="#e7edf6" stroke="#5a7095" stroke-width="2"/>
+<text x="210" y="295" text-anchor="middle" font-size="14" font-weight="bold" fill="#1f3557">Seeed XIAO ESP32-C3</text>
+<text x="210" y="316" text-anchor="middle" font-size="12" fill="#666">NimBLE &#183; one HID device, three reports</text>
+
+<rect x="70" y="356" width="280" height="76" rx="6" fill="#f4f2ea" stroke="#a89a72" stroke-width="1.5"/>
+<text x="210" y="379" text-anchor="middle" font-size="13.5" fill="#222">USB-C power for now</text>
+<text x="210" y="399" text-anchor="middle" font-size="12" fill="#666">later: 1S LiPo on the BAT pads,</text>
+<text x="210" y="417" text-anchor="middle" font-size="12" fill="#666">slide switch in the + lead</text>
+
+<path d="M 70 144 L 54 144 L 54 300 L 66 300" fill="none" stroke="#999" stroke-width="2" stroke-dasharray="4 3"/>
+<path d="M 69 300 l -8 -5 l 0 10 z" fill="#999"/>
+<line x1="210" y1="246" x2="210" y2="266" stroke="#999" stroke-width="2" stroke-dasharray="4 3"/>
+<path d="M 210 268 l -5 -8 l 10 0 z" fill="#999"/>
+<line x1="210" y1="354" x2="210" y2="336" stroke="#666" stroke-width="2"/>
+<path d="M 210 334 l -5 8 l 10 0 z" fill="#666"/>
+<text x="210" y="462" text-anchor="middle" font-size="12" fill="#555">Gyro rate becomes cursor motion;</text>
+<text x="210" y="479" text-anchor="middle" font-size="12" fill="#555">buttons become keys and clicks.</text>
+
+<!-- link -->
+<path d="M 385 300 L 650 300" stroke="#c2410c" stroke-width="3"/>
+<path d="M 650 300 l -14 -8 l 0 16 z" fill="#c2410c"/>
+<text x="517" y="280" text-anchor="middle" font-size="14" font-weight="bold" fill="#c2410c">Bluetooth LE HID</text>
+<text x="517" y="323" text-anchor="middle" font-size="12" fill="#7c4a2d">Just Works pairing, bonded</text>
+<text x="517" y="340" text-anchor="middle" font-size="12" fill="#7c4a2d">no dongle, no driver to install</text>
+<text x="517" y="365" text-anchor="middle" font-size="11.5" fill="#999">reconnects by itself after</text>
+<text x="517" y="381" text-anchor="middle" font-size="11.5" fill="#999">a power cycle</text>
+
+<!-- PC -->
+<rect x="655" y="70" width="345" height="420" rx="10" fill="#fbfbfd" stroke="#b9c2d0" stroke-width="2"/>
+<text x="827" y="98" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">PC (WINDOWS)</text>
+
+<rect x="685" y="116" width="285" height="76" rx="6" fill="#fff4e0" stroke="#e8a33d" stroke-width="1.5"/>
+<text x="827" y="139" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#222">Report 1: keyboard</text>
+<text x="827" y="159" text-anchor="middle" font-size="12" fill="#666">Page Down (tested)</text>
+<text x="827" y="177" text-anchor="middle" font-size="11.5" fill="#888">later: Page Up, Ctrl+L laser dot</text>
+
+<rect x="685" y="210" width="285" height="66" rx="6" fill="#fff4e0" stroke="#e8a33d" stroke-width="1.5"/>
+<text x="827" y="235" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#222">Report 2: relative mouse</text>
+<text x="827" y="256" text-anchor="middle" font-size="12" fill="#666">cursor moves by dx, dy (tested)</text>
+
+<rect x="685" y="294" width="285" height="76" rx="6" fill="#fff4e0" stroke="#e8a33d" stroke-width="1.5"/>
+<text x="827" y="317" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#222">Report 3: absolute pointer</text>
+<text x="827" y="337" text-anchor="middle" font-size="12" fill="#666">cursor jumps to a screen position</text>
+<text x="827" y="355" text-anchor="middle" font-size="11.5" fill="#888">centre jump tested; basis for recenter</text>
+
+<rect x="685" y="390" width="285" height="60" rx="6" fill="#f4f2ea" stroke="#a89a72" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="827" y="414" text-anchor="middle" font-size="13" fill="#222">Classroom PC</text>
+<text x="827" y="433" text-anchor="middle" font-size="12" fill="#666">same checks, not run yet</text>
+
+<!-- legend -->
+<rect x="300" y="512" width="34" height="18" rx="3" fill="#ffffff" stroke="#555" stroke-width="1.5"/>
+<text x="344" y="526" font-size="12.5" fill="#444">working on 2 October 2026</text>
+<rect x="560" y="512" width="34" height="18" rx="3" fill="#ffffff" stroke="#555" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="604" y="526" font-size="12.5" fill="#444">planned, not built yet</text>
+</svg>
