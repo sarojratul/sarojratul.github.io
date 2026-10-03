@@ -1,0 +1,52 @@
+---
+layout: default
+---
+<section class="wrap wrap--wide hero">
+  <p class="eyebrow">Build logs</p>
+  <h1 class="hero__title">{{ site.title }}</h1>
+  <div class="hero__text">{{ content }}</div>
+</section>
+
+<section class="wrap wrap--wide" id="projects">
+  <h2 class="section-label">Projects</h2>
+  <div class="card-grid">
+    {%- for entry in site.data.series %}
+    {%- assign key = entry[0] %}
+    {%- assign s = entry[1] %}
+    {%- assign posts = site.posts | where: "series", key | sort: "part" %}
+    {%- assign latest = posts | last %}
+    <article class="card">
+      <a class="card__media" href="{{ s.url | relative_url }}" tabindex="-1" aria-hidden="true">
+        <img src="{{ s.image | relative_url }}" alt="" loading="lazy"{% if s.image_position %} style="object-position: {{ s.image_position }}"{% endif %}>
+      </a>
+      <div class="card__body">
+        <p class="card__meta"><span class="status status--{{ s.status }}">{{ s.status_label }}</span><span>Since {{ s.started }}</span></p>
+        <h3 class="card__title"><a href="{{ s.url | relative_url }}">{{ s.title }}</a></h3>
+        <p class="card__summary">{{ s.summary }}</p>
+        <ul class="tags">{% for t in s.tags %}<li>{{ t }}</li>{% endfor %}</ul>
+        <p class="card__links">
+          <a href="{{ s.url | relative_url }}">Overview</a>
+          {%- if latest %}
+          <a href="{{ latest.url | relative_url }}">Latest: Part {{ latest.part }}</a>
+          {%- endif %}
+          <span class="muted">{{ posts.size }} {% if posts.size == 1 %}entry{% else %}entries{% endif %}</span>
+        </p>
+      </div>
+    </article>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="wrap wrap--wide">
+  <h2 class="section-label">Recent entries</h2>
+  <ol class="entry-list">
+    {%- for p in site.posts limit: 6 %}
+    {%- assign s = site.data.series[p.series] %}
+    <li>
+      <time datetime="{{ p.date | date: '%Y-%m-%d' }}">{{ p.date | date: "%-d %b %Y" }}</time>
+      <span class="entry-list__project">{{ s.short }}</span>
+      <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
+    </li>
+    {%- endfor %}
+  </ol>
+</section>

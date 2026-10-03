@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  {% seo %}
+  {% feed_meta %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap wrap--wide site-header__inner">
+      <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      <nav class="site-nav" aria-label="Main">
+        {%- for item in site.nav %}
+        {%- assign active = false %}
+        {%- if page.url == item.url %}{% assign active = true %}{% endif %}
+        {%- if page.series %}{% assign s = site.data.series[page.series] %}{% if s.url == item.url %}{% assign active = true %}{% endif %}{% endif %}
+        <a href="{{ item.url | relative_url }}"{% if active %} aria-current="page"{% endif %}>{{ item.title }}</a>
+        {%- endfor %}
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap wrap--wide site-footer__inner">
+      <span>&copy; {{ site.time | date: "%Y" }} {{ site.author }}</span>
+      <span class="site-footer__links">
+        <a href="mailto:{{ site.email }}">Email</a>
+        <a href="https://github.com/{{ site.github }}">GitHub</a>
+        <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+      </span>
+    </div>
+  </footer>
+</body>
+</html>

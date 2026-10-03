@@ -1,0 +1,22 @@
+---
+layout: default
+---
+{%- assign s = site.data.series[page.series] -%}
+{%- assign series_posts = site.posts | where: "series", page.series | sort: "part" -%}
+{%- assign last_post = series_posts | last -%}
+{%- assign words = content | number_of_words -%}
+{%- assign minutes = words | divided_by: 220 | plus: 1 -%}
+<article class="wrap prose post">
+  <header class="post__header">
+    <p class="eyebrow"><a href="{{ s.url | relative_url }}">{{ s.title }}</a> <span aria-hidden="true">/</span> Part {{ page.part }}{% if series_posts.size > 1 %} of {{ last_post.part }}{% endif %}</p>
+    <h1 class="page-title">{{ page.title | split: ": " | last }}</h1>
+    <p class="post__meta">{{ page.covers }} <span aria-hidden="true">&middot;</span> {{ minutes }} min read</p>
+    {%- if page.excerpt %}<p class="lede">{{ page.excerpt | strip_html }}</p>{% endif %}
+  </header>
+
+  <div class="post__body">
+    {{ content }}
+  </div>
+
+  {% include series-nav.html %}
+</article>
