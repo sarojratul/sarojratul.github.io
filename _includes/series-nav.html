@@ -1,0 +1,38 @@
+{%- comment -%}
+  Previous / next links and the full parts list at the end of every build-log entry.
+{%- endcomment -%}
+{%- assign series_posts = site.posts | where: "series", page.series | sort: "part" -%}
+{%- assign s = site.data.series[page.series] -%}
+{%- assign prev_post = nil -%}
+{%- assign next_post = nil -%}
+{%- for p in series_posts -%}
+  {%- if p.url == page.url -%}
+    {%- assign i_prev = forloop.index0 | minus: 1 -%}
+    {%- assign i_next = forloop.index0 | plus: 1 -%}
+    {%- unless forloop.first -%}{%- assign prev_post = series_posts[i_prev] -%}{%- endunless -%}
+    {%- unless forloop.last -%}{%- assign next_post = series_posts[i_next] -%}{%- endunless -%}
+  {%- endif -%}
+{%- endfor -%}
+<nav class="pager" aria-label="Build log">
+  {%- if prev_post %}
+  <a class="pager__link" href="{{ prev_post.url | relative_url }}"><span>Previous</span>{{ prev_post.title }}</a>
+  {%- else %}
+  <a class="pager__link" href="{{ s.url | relative_url }}"><span>Back to</span>Project overview</a>
+  {%- endif %}
+  {%- if next_post %}
+  <a class="pager__link pager__link--next" href="{{ next_post.url | relative_url }}"><span>Next</span>{{ next_post.title }}</a>
+  {%- else %}
+  <a class="pager__link pager__link--next" href="{{ s.url | relative_url }}"><span>Latest entry</span>Project overview</a>
+  {%- endif %}
+</nav>
+
+{%- if series_posts.size > 1 %}
+<details class="all-parts">
+  <summary>All parts of {{ s.title }}</summary>
+  <ol start="0">
+    {%- for p in series_posts %}
+    <li{% if p.url == page.url %} aria-current="page"{% endif %}>{% if p.url == page.url %}{{ p.title }}{% else %}<a href="{{ p.url | relative_url }}">{{ p.title }}</a>{% endif %}</li>
+    {%- endfor %}
+  </ol>
+</details>
+{%- endif %}

@@ -1,0 +1,20 @@
+{%- comment -%}
+  Numbered list of every entry in one series. Usage: {% include build-log.html series="turn-signal" %}
+{%- endcomment -%}
+{%- assign series_posts = site.posts | where: "series", include.series | sort: "part" -%}
+{%- if series_posts.size > 0 %}
+<ol class="log-list">
+  {%- for p in series_posts %}
+  <li>
+    <span class="log-list__num">{{ p.part }}</span>
+    <div>
+      <a class="log-list__title" href="{{ p.url | relative_url }}">{{ p.title | split: ": " | last }}</a>
+      <p class="log-list__meta">{{ p.covers }}</p>
+      <p class="log-list__excerpt">{{ p.excerpt | strip_html }}</p>
+    </div>
+  </li>
+  {%- endfor %}
+</ol>
+{%- else %}
+<p class="muted">No entries yet.</p>
+{%- endif %}
