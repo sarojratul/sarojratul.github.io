@@ -1,0 +1,25 @@
+# One entry per project. The home page lists them in this order.
+comet-air-mouse:
+  title: COMET Air Mouse
+  short: Air Mouse
+  url: /comet-air-mouse/
+  summary: A gyroscope-driven Bluetooth LE mouse, reworked into a classroom presenter remote with slide keys and a recenter gesture.
+  status: active
+  status_label: In progress
+  image: /images/comet_breadboard_test.jpg
+  image_alt: Two Seeed XIAO ESP32-C3 boards on a breadboard, the lower one powered over USB-C
+  image_position: center 72%
+  tags: [ESP32-C3, Bluetooth LE HID, MPU-6050]
+  started: September 2026
+
+turn-signal:
+  title: Wireless Bicycle Turn Signal
+  short: Turn Signal
+  url: /turn-signal/
+  summary: A 32-LED amber arrow for a backpack, driven by an ESP32-C3 and commanded over ESP-NOW from a handlebar remote.
+  status: paused
+  status_label: Paused for winter
+  image: /images/arrow_topdown.jpg
+  image_alt: The 32-LED arrow laid out on the breadboard
+  tags: [ESP32-C3, ESP-NOW, MOSFET drive, LTspice]
+  started: August 2026
