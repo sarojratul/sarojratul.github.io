@@ -25,7 +25,7 @@ facts:
 
 ## Where it stands
 
-*As of 3 October 2026.* The Bluetooth test passed on a classroom PC as well as my laptop. The MPU-6050 is wired and the cursor follows the hand with correct directions at any wrist roll, but drifts while the board is held still. Fixing the drift is next.
+*As of 15 October 2026.* The Bluetooth test passed on a classroom PC as well as my laptop. The MPU-6050 is wired and the cursor follows the hand with correct directions at any wrist roll, but drifts while the board is held still. A research session ruled out absolute (IR camera) pointing as unnecessary and chose open-source code for the drift fix, which is next.
 
 | Work | Status |
 |---|---|
@@ -34,7 +34,8 @@ facts:
 | Bluetooth LE HID test on my laptop | Done, [Part 0](/comet-air-mouse/part-0-presenter-design-and-ble-test/#results) |
 | Same test on a classroom PC | Done, [Part 1](/comet-air-mouse/part-1-classroom-test-and-gyro-cursor/#bluetooth-test-on-a-classroom-pc) |
 | Breadboard: MPU-6050 | Done, [Part 1](/comet-air-mouse/part-1-classroom-test-and-gyro-cursor/#wiring-the-mpu-6050) |
-| Gyro cursor firmware | In progress: gravity-compensated pointing works; [drift at rest](/comet-air-mouse/part-1-classroom-test-and-gyro-cursor/#open-problem-drift-at-rest) is **next** |
+| Pointing approach: absolute or relative | Decided: relative gyro, [Part 2](/comet-air-mouse/part-2-pointing-research/#absolute-or-relative-pointing) |
+| Gyro cursor firmware | In progress: gravity-compensated pointing works; [drift at rest](/comet-air-mouse/part-1-classroom-test-and-gyro-cursor/#open-problem-drift-at-rest) is **next**, [plan in Part 2](/comet-air-mouse/part-2-pointing-research/#decision-and-plan) |
 | Breadboard: four buttons | Not started |
 | Presenter firmware | Not started |
 | Battery, power switch and enclosure | Not started; LiPo still to buy |

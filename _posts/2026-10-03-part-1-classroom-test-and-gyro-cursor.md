@@ -156,3 +156,5 @@ Drift speed was not measured. The reversal with orientation is the useful clue. 
 **What it does not show.** The source of the drift; whether the 2 s boot calibration is long enough or the bias changes as the sensor warms; and how the 1€ filter settings feel once the drift is gone.
 
 **Next:** measure the residual rate at rest for a few minutes after calibration, then update the bias automatically whenever the board is still (low gyro variance and an accelerometer magnitude near 1 g). After that, wire the four buttons on the [draft pin map](/comet-air-mouse/#pin-map-draft) so the cursor moves only while Point is held.
+
+> **Update, 15 October 2026:** the automatic bias update will come from the GamepadMotionHelpers library rather than being written from scratch. See [Part 2](/comet-air-mouse/part-2-pointing-research/#code-for-the-next-firmware-round).
