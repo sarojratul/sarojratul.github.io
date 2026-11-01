@@ -5,7 +5,7 @@ date: 2026-11-01 16:30:00 -0600
 series: fc200v-emulator
 part: 2
 covers: "1 November 2026"
-excerpt: "Before publishing, the app became FinCalc200: brand names removed from the app, the keypad rearranged, and the theme that copied the physical calculator's colours replaced, with the manual's examples rechecked."
+excerpt: "Before publishing, the app got its own name (FinCalc200, then CalcFin20): brand names removed from the app, the keypad rearranged, and the theme that copied the physical calculator's colours replaced, with the manual's examples rechecked."
 permalink: /fc200v-emulator/part-2-its-own-name-keypad-and-look/
 ---
 
@@ -52,6 +52,8 @@ A takedown or a policy strike lands on the developer account, not only the app, 
 | Theme name | Classic CASIO | Retro |
 | Java package (visible in the APK) | `com.saroj.fc200v` | `com.saroj.fincalc` |
 | Saved settings file, Gradle project, build folder | `fc200v` | `fincalc`, `FinCalc200` |
+
+> **Update, 1 November 2026:** Later the same day the name changed again, from FinCalc200 to CalcFin20, to drop the "200" that still echoed the model number. The package (`com.saroj.fincalc`) and settings file stayed the same.
 
 The store ID, `com.finance.calculator`, was already neutral and did not change. The mode names (CMPD, AMRT, BOND and the rest) stay: they describe the calculations the app performs. Source comments still cite the FC-200V/FC-100V user's guide by page, because that manual is the specification the formulas were written from.
 
@@ -103,3 +105,5 @@ The ALPHA letters A to D are printed above four keys in row 4. Moving those keys
 **Conclusion.** The app now has its own name, layout and look, and still reproduces the manual's results. What this does not show: how Google Play's review treats it, which is only known after the first upload, and whether the remaining similarities (mode names, the green LCD) raise any issue. The comparison with the physical calculator is also still to do.
 
 **Next:** finish the launch steps from [Part 1](/fc200v-emulator/part-1-fee-goal-ads-and-billing/#where-it-stopped) once Google verifies the accounts.
+
+> **Update, 1 November 2026:** A second design pass followed the same day: alphabetical mode keys, one label per key, a phone-style number pad and a plain display in place of the green LCD. See [Part 3](/fc200v-emulator/part-3-single-labels-phone-pad-and-display/).

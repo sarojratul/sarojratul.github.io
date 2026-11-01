@@ -29,7 +29,7 @@ This is the first entry for this project. It is a software build, not a hardware
 
 **Conclusion.** The goal was practice fidelity, not a new calculator: a solve on the app must give the same number, in the same display format, as the manual shows.
 
-> **Update, 1 November 2026:** Before publishing, the app was renamed FinCalc200, its keypad was rearranged and the classic CASIO theme was replaced, so it no longer copies the calculator's name, layout or colours. See [Part 2](/fc200v-emulator/part-2-its-own-name-keypad-and-look/).
+> **Update, 1 November 2026:** Before publishing, the app was renamed CalcFin20, its keypad was rearranged and the classic CASIO theme was replaced, so it no longer copies the calculator's name, layout or colours. See [Part 2](/fc200v-emulator/part-2-its-own-name-keypad-and-look/).
 
 ## First version and the CalcES study
 

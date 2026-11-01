@@ -1,12 +1,12 @@
 ---
 layout: project
-title: "FinCalc200: An Alternative to the FC-200V"
+title: "CalcFin20: An Alternative to the FC-200V"
 permalink: /fc200v-emulator/
 series: fc200v-emulator
-description: FinCalc200, a native Android financial calculator I built with Claude Code as an alternative to the CASIO FC-200V, to practise on until the real calculator arrived. Project overview and build log.
-lede: The CASIO FC-200V I ordered for my Engineering Economics exams was due to arrive the night before the midterm. To practise in the meantime, I built a native Android alternative with Claude Code, using the calculator's manual as the specification, and tested it against the manual's worked examples. Renamed FinCalc200, with its own keypad layout and themes, it is now being prepared for Google Play, with a public goal to cover the developer fee and then drop ads for everyone.
-hero: /images/fincalc200_themes.jpg
-hero_alt: FinCalc200 in its dark, light and Retro themes, solving the manual's CMPD example
+description: CalcFin20, a native Android financial calculator I built with Claude Code as an alternative to the CASIO FC-200V, to practise on until the real calculator arrived. Project overview and build log.
+lede: The CASIO FC-200V I ordered for my Engineering Economics exams was due to arrive the night before the midterm. To practise in the meantime, I built a native Android alternative with Claude Code, using the calculator's manual as the specification, and tested it against the manual's worked examples. Renamed CalcFin20, with a phone-style keypad and a modern display of its own, it is now being prepared for Google Play, with a public goal to cover the developer fee and then drop ads for everyone.
+hero: /images/calcfin20_themes.jpg
+hero_alt: CalcFin20 in its dark, light and Retro themes in CMPD mode, with FV = 16761.07897
 hero_position: center 30%
 facts:
   - label: Platform
@@ -25,13 +25,14 @@ facts:
 
 ## Where it stands
 
-*As of 1 November 2026.* The app covers every mode in the FC-200V manual and matches the manual's examples. It has its own name, FinCalc200, and its own keypad layout and themes. The Google Play version is code-complete: a live fee goal, ads that switch off at the goal, a rewarded break from the banner, the EU consent form and a CA$1.49 Premium purchase. Publishing is paused while Google verifies my developer, AdMob and payments accounts.
+*As of 1 November 2026.* The app covers every mode in the FC-200V manual and matches the manual's examples. It has its own name, CalcFin20, alphabetical mode keys, keys that relabel themselves under SHIFT and ALPHA, a phone-style number pad and a plain modern display. The Google Play version is code-complete: a live fee goal, ads that switch off at the goal, a rewarded break from the banner, the EU consent form and a CA$1.49 Premium purchase. Publishing is paused while Google verifies my developer, AdMob and payments accounts.
 
 | Work | Status |
 |---|---|
 | Calculator engine and UI, all modes | Done, [Part 0](/fc200v-emulator/part-0-why-and-the-native-rebuild/#native-rebuild-from-the-manual) |
 | Tests against the manual's examples | Done, 17 then 19 tests, [Part 0](/fc200v-emulator/part-0-why-and-the-native-rebuild/#testing-against-the-manual) |
 | Own name, keypad layout and theme; brand references removed | Done, [Part 2](/fc200v-emulator/part-2-its-own-name-keypad-and-look/) |
+| Single-label keys, phone-style pad, modern display | Done, [Part 3](/fc200v-emulator/part-3-single-labels-phone-pad-and-display/) |
 | Public fee goal and master ad switch | Done, [Part 1](/fc200v-emulator/part-1-fee-goal-ads-and-billing/#firestore-goal-and-master-ad-switch) |
 | Banner and 5-minute rewarded break | Done, tested with test ads, [Part 1](/fc200v-emulator/part-1-fee-goal-ads-and-billing/#banner-and-the-rewarded-break) |
 | EU consent and Play Billing | Code done; purchase untested, [Part 1](/fc200v-emulator/part-1-fee-goal-ads-and-billing/#consent-and-play-billing) |
