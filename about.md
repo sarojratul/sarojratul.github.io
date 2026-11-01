@@ -11,6 +11,7 @@ This site holds build logs for projects I work on outside class. Each one is wri
 ## Projects
 
 - **[COMET Air Mouse](/comet-air-mouse/)**, in progress. A gyroscope-driven Bluetooth LE mouse, reworked into a classroom presenter remote.
+- **[CalcFin20](/fc200v-emulator/)**, waiting on Google account verification. A native Android financial calculator, built as an alternative to the CASIO FC-200V so I could practise for an Engineering Economics midterm until the real calculator arrived.
 - **[Wireless Bicycle Turn Signal](/turn-signal/)**, paused for the winter. A 32-LED backpack arrow commanded over ESP-NOW from a handlebar remote.
 
 ## Bench
@@ -19,4 +20,4 @@ A soldering station and fume extractor, a Digilent Analog Discovery 2 (oscillosc
 
 ## Contact
 
-[{{ site.email }}](mailto:{{ site.email }}) · [github.com/{{ site.github }}](https://github.com/{{ site.github }})
+[{{ site.email }}](mailto:{{ site.email }}) · [linkedin.com/in/saroj-ratul](https://linkedin.com/in/saroj-ratul)
