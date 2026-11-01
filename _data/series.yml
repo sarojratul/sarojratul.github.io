@@ -12,6 +12,19 @@ comet-air-mouse:
   tags: [ESP32-C3, Bluetooth LE HID, MPU-6050]
   started: September 2026
 
+fc200v-emulator:
+  title: FC-200V Calculator Emulator
+  short: FC-200V App
+  url: /fc200v-emulator/
+  summary: A native Android emulator of the CASIO FC-200V financial calculator, built with Claude Code from the official manual so I could practise for an Engineering Economics midterm before the real calculator arrived.
+  status: paused
+  status_label: Waiting on Google account verification
+  image: /images/fc200v_card.jpg
+  image_alt: The emulator in CMPD mode showing FV = 16761.07897
+  image_position: center 20%
+  tags: [Android, Java, Firebase, AdMob, Claude Code]
+  started: October 2026
+
 turn-signal:
   title: Wireless Bicycle Turn Signal
   short: Turn Signal
