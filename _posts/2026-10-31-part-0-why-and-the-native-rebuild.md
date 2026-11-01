@@ -1,11 +1,11 @@
 ---
 layout: series-post
-title: "Part 0: Why an Emulator, and the Native Rebuild from the Manual"
+title: "Part 0: Why Build an Alternative, and the Native Rebuild from the Manual"
 date: 2026-10-31 20:00:00 -0600
 series: fc200v-emulator
 part: 0
 covers: "31 October to 1 November 2026"
-excerpt: "The FC-200V I ordered for Engineering Economics would arrive the night before the midterm, so I built a native Android emulator of it with Claude Code, from the calculator's own manual, and tested it against the manual's worked examples."
+excerpt: "The FC-200V I ordered for Engineering Economics would arrive the night before the midterm, so I built a native Android alternative to practise on until it arrived, with Claude Code, from the calculator's own manual, and tested it against the manual's worked examples."
 permalink: /fc200v-emulator/part-0-why-and-the-native-rebuild/
 ---
 
@@ -23,11 +23,13 @@ This is the first entry for this project. It is a software build, not a hardware
 
 <p class="entry-date">31 October 2026</p>
 
-**Objective.** GE 348 (Engineering Economics) exams allow the CASIO FC-200V financial calculator. I ordered one online, but the delivery date was the night before the midterm, which left no time to learn its key sequences. I needed something that behaves like the real calculator to practise on until it arrived.
+**Objective.** GE 348 (Engineering Economics) exams allow the CASIO FC-200V financial calculator. I ordered one online, but the delivery date was the night before the midterm, which left no time to learn its key sequences. I needed an alternative that works like the real calculator, to practise on until it arrived.
 
 **Method.** Build an Android app that copies the FC-200V's modes, keys and display rules, using the official CASIO manual (the FC-200V/FC-100V user's guide, a PDF found online) as the specification. All code was written through Claude Code, Anthropic's command-line coding agent, running on my laptop with the Android SDK, Gradle and an Android emulator.
 
 **Conclusion.** The goal was practice fidelity, not a new calculator: a solve on the app must give the same number, in the same display format, as the manual shows.
+
+> **Update, 1 November 2026:** Before publishing, the app was renamed FinCalc200, its keypad was rearranged and the classic CASIO theme was replaced, so it no longer copies the calculator's name, layout or colours. See [Part 2](/fc200v-emulator/part-2-its-own-name-keypad-and-look/).
 
 ## First version and the CalcES study
 
@@ -95,6 +97,8 @@ The emulator run found two faults the unit tests could not: the app crashed at l
 
 *Dark, light and classic CASIO themes. The classic palette copies the physical calculator's grey body and dark keys.*
 {: .caption}
+
+> **Update, 1 November 2026:** The classic palette was replaced by a Retro theme and the keys were rearranged. See [Part 2](/fc200v-emulator/part-2-its-own-name-keypad-and-look/#a-rearranged-keypad).
 
 **Conclusion.** The emulator reproduces the manual's examples exactly, and the display matches the manual's format. What this does not show: it was tested against the manual, not side by side with a physical FC-200V, which had not arrived. The comparison with the real calculator is still to do.
 

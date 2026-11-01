@@ -56,6 +56,8 @@ Claude Code works on files and commands on my laptop. It cannot click through we
 The prompts Claude Code received were drafted in that chat and pasted in, with the real IDs filled in.
 
 > **Lesson:** The package name typed into Firebase did not match the one in the code (`com.saroj.fc200v`), and the build refuses to run when they differ. The fix was to change only the application ID and keep the Java package, so no source files moved. The cost: the new build installs as a different app from the Part 0 APK, so settings and history do not carry over.
+>
+> **Update, 1 November 2026:** The Java package was later renamed to `com.saroj.fincalc` to drop the model name. See [Part 2](/fc200v-emulator/part-2-its-own-name-keypad-and-look/#name-and-brand-references).
 
 ## Firestore goal and master ad switch
 
@@ -127,3 +129,5 @@ The code is complete for a first release, and the debug and release builds compi
 | Compare the app with the physical FC-200V | The calculator arriving |
 
 **Next:** finish the launch steps above once Google verifies the accounts.
+
+> **Update, 1 November 2026:** First, the app was given its own name, keypad and theme. See [Part 2](/fc200v-emulator/part-2-its-own-name-keypad-and-look/).

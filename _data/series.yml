@@ -13,14 +13,14 @@ comet-air-mouse:
   started: September 2026
 
 fc200v-emulator:
-  title: FC-200V Calculator Emulator
-  short: FC-200V App
+  title: FinCalc200 Financial Calculator
+  short: FinCalc200
   url: /fc200v-emulator/
-  summary: A native Android emulator of the CASIO FC-200V financial calculator, built with Claude Code from the official manual so I could practise for an Engineering Economics midterm before the real calculator arrived.
+  summary: A native Android financial calculator, built with Claude Code from the FC-200V manual as an alternative to practise on for an Engineering Economics midterm until the real calculator arrived.
   status: paused
   status_label: Waiting on Google account verification
-  image: /images/fc200v_card.jpg
-  image_alt: The emulator in CMPD mode showing FV = 16761.07897
+  image: /images/fincalc200_card.jpg
+  image_alt: FinCalc200 in CMPD mode showing FV = 16761.07897
   image_position: center 20%
   tags: [Android, Java, Firebase, AdMob, Claude Code]
   started: October 2026
