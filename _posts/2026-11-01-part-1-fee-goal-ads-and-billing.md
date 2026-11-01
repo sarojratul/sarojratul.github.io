@@ -1,7 +1,7 @@
 ---
 layout: series-post
 title: "Part 1: A Public Fee Goal, Ads, Consent and Play Billing"
-date: 2026-11-01 20:00:00 -0600
+date: 2026-11-01 12:00:00 -0600
 series: fc200v-emulator
 part: 1
 covers: "1 November 2026"
